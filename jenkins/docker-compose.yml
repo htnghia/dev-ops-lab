@@ -1,0 +1,5 @@
+FROM jenkins/jenkins:lts-jdk11
+
+environment:
+    - JENKINS_HOME=/var/jenkins_home
+    - JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Djava.io.tmpdir=/var/jenkins_home/tmp"

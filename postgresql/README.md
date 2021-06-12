@@ -20,4 +20,10 @@ docker stop udb && docker rm udb && docker run -d --name udb -v /home/nghia/dock
   psql -U postgres -f udata.sql
 
 
-  
+
+# Draft
+
+docker cp /home/nghia/docker_volumes/udb/postgresql youthful_keller:/etc/postgresql &&
+docker cp /home/nghia/docker_volumes/udb/log/postgresql youthful_keller:/var/log/postgresql &&
+docker cp /home/nghia/docker_volumes/udb/lib/postgresql youthful_keller:/var/lib/postgresql &&
+docker cp /home/nghia/docker_volumes/udb/postgresql/data youthful_keller:/var/lib/postgresql/data

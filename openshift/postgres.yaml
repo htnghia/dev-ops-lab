@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: openshift/postgresql-92-centos7
+        env:
+          - name: POSTGRESQL_ADMIN_PASSWORD
+            value: '123456'
+          - name: POSTGRESQL_PASSWORD
+            value: '123456'
+          - name: POSTGRESQL_USER
+            value: nghia
+          - name: POSTGRESQL_DATABASE
+            value: nghiadb
+        ports:
+        - containerPort: 5432
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+spec:
+  selector:                  
+    app: postgres
+  type: NodePort
+  ports:
+  - nodePort: 31000
+    port: 5432            
+    protocol: TCP
+    targetPort: 5432         

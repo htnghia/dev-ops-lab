@@ -23,10 +23,17 @@ mysql -u leo -p
 CREATE DATABASE dacmsinv;
 
 ## clone db
+docker exec -it mysql bash
 
-mysqldump -u leo --password=123456 dacmsinv | mysql -u leo -p tmp
+mysql -u leo -p
+
+drop database tmp;
+
+create database tmp;
+
+mysqldump -u leo --password=123456 dacmsinv | mysql -u leo --password=123456 tmp
 
 ## mysql connection and driver
 connection URL: jdbc:mysql://localhost:3306/dacmsinv?useSSL=false&allowMultiQueries=true&serverTimezone=UTC
 driver class: com.mysql.jdbc.Driver
-driver path: ~/Library/DBeaverData/drivers/maven/maven-central/mysql/mysql-connector-java-8.0.17.jar
+driver path: ~/Library/DBeaverData/drivers/maven/maven-central/mysql/mysql-connector-java-8.0.17.jar`
